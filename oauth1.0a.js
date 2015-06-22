@@ -12,6 +12,11 @@ var oauth = {
 
 module.exports = oauth;
 
+/**
+ * Returns oauth signature for given oauth's options and http request data
+ * @param {Object} oauth options
+ * @param {Object} oauth http request data 
+ */
 function genSignature(oauth_opts, request_data) {
 	
 	var oauth_params = genOAuthParams(oauth_opts, request_data);
@@ -49,6 +54,11 @@ function genSignature(oauth_opts, request_data) {
 	return hash(oauth_opts.signature_method, base_string, getHashKey(oauth_opts, request_data));
 }
 
+/**
+ * Returns oauth authorization headers for given oauth option and http request data
+ * @param {Object} oauth options
+ * @param {Object} oauth http request data 
+ */
 function genAuthorizationHeader(oauth_opts, request_data) {
 
 	var oauth_header = genOAuthParams(oauth_opts, request_data);
@@ -72,7 +82,10 @@ function genAuthorizationHeader(oauth_opts, request_data) {
 ////
 
 /**
- * 
+ * Returns hash value from givem signature's method, plain text and key
+ * @param {Object} signature method, currently support hmac-sha1 & hmac-sha256
+ * @param {Object} string value to hash
+ * @param {Object} hashing key
  */
 function hash(signature_method, text, key) {
 
@@ -90,10 +103,20 @@ function hash(signature_method, text, key) {
 	};
 };
 
+/**
+ * Returns hash key, combination of consumer's secret and oauth token secret (if avaialable)
+ * @param {Object} oauth options
+ * @param {Object} oauth http request data
+ */
 function getHashKey(oauth_opts, request_data) {
 	return oauth_opts.consumer.secret + (request_data.oauthTokenSecret ? '&' + request_data.oauthTokenSecret : '');
 }
 
+/**
+ * Returns base oauth headers
+ * @param {Object} oauth options
+ * @param {Object} oauth http request data
+ */
 function genOAuthParams(oauth_opts, request_data) {
 	return {
 		'oauth_consumer_key': oauth_opts.consumer.public,
@@ -130,6 +153,11 @@ function sort(data) {
     return result;		
 }
 
+/**
+ * Returns merged data of two objects
+ * @param {Object} json object to copy from
+ * @param {Object} json object to copy to
+ */
 function mergeObjects(source, target) {
     var merged_obj = target;
     for(var key in source) {

@@ -1,7 +1,7 @@
 /// <reference path="../typings/mocha/mocha.d.ts"/>
 
 var expect = require('chai').expect;
-var oauth = require('../app/oauth1.0a');
+var oauth = require('../oauth1.0a');
 
 	var oauth_opts = {
 		consumer: {

@@ -1,5 +1,5 @@
 {
-  "name": "servecard-oauth",
+  "name": "oauth1.0a",
   "version": "0.1.0",
   "description": "OAuth1.0a implementation for Serve Open API",
   "main": "oauth1.0a.js",

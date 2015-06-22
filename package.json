@@ -2,7 +2,7 @@
   "name": "servecard-oauth",
   "version": "0.1.0",
   "description": "OAuth1.0a implementation for Serve Open API",
-  "main": "index.js",
+  "main": "oauth1.0a.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/nouval/oauth1.0a.git"

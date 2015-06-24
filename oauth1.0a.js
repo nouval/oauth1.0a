@@ -118,12 +118,17 @@ function getHashKey(oauth_opts, request_data) {
  * @param {Object} oauth http request data
  */
 function genOAuthParams(oauth_opts, request_data) {
+	
+	// assigned nonce and timestamp if its empty/null
+	oauth_opts.nonce = oauth_opts.nonce || uuid.v1();
+	oauth_opts.timestamp = oauth_opts.timestamp || Math.floor(Date.now() / 1000);
+
 	return {
 		'oauth_consumer_key': oauth_opts.consumer.public,
 		'oauth_version': oauth_opts.version || '1.0',
 		'oauth_signature_method': oauth_opts.signature_method || 'HMAC-SHA256',
-		'oauth_nonce': oauth_opts.nonce || uuid.v1(),
-		'oauth_timestamp': oauth_opts.timestamp || Math.floor(Date.now() / 1000),
+		'oauth_nonce': oauth_opts.nonce,
+		'oauth_timestamp': oauth_opts.timestamp
 	};
 }
 

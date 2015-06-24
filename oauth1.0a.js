@@ -58,8 +58,9 @@ function genSignature(oauth_opts, request_data) {
  * Returns oauth authorization headers for given oauth option and http request data
  * @param {Object} oauth options
  * @param {Object} oauth http request data 
+ * @param {Boolean} true to render auth header as http header, otherwise render output to json
  */
-function genAuthorizationHeader(oauth_opts, request_data) {
+function genAuthorizationHeader(oauth_opts, request_data, to_http_header) {
 
 	var oauth_header = genOAuthParams(oauth_opts, request_data);
 	
@@ -74,7 +75,8 @@ function genAuthorizationHeader(oauth_opts, request_data) {
 		oauth_header['oauth_body_hash'] = encodeURIComponent(hash(oauth_opts.signature_method, request_data.data || '', getHashKey(oauth_opts, request_data)));
 	}
 	
-	return oauth_header;
+	to_http_header = to_http_header || false;
+	return !to_http_header ? oauth_header : toHttpHeader(oauth_header);
 }
 
 ////
@@ -169,4 +171,17 @@ function mergeObjects(source, target) {
         merged_obj[key] = source[key];
 	}
     return merged_obj;	
+}
+
+function toHttpHeader(oauth_header) {
+	var data = sort(oauth_header);
+	var keys = Object.keys(data);
+	var result = "oauth ";
+
+	for(var i = 0; i < keys.length; i++) {
+		var key = keys[i];
+		result += key + "=" + "\"" + data[key] + "\"" + (i < keys.length-1?", ":"");
+	}
+
+	return result;
 }

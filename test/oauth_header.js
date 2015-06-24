@@ -223,6 +223,9 @@ describe("Serve oauth1.0a authorization header builder", function() {
 				oauth_nonce:'32acf939-7139-4bd1-bbbb-2209349b867e',
 				oauth_version:'1.0'
 			});
+
+			var authorization_http_header = oauth.generateAuthorizationHeader(oauth_opts, request_data_with_contentBody_form_urlencoded, true);
+			expect(authorization_http_header).to.equal('oauth oauth_consumer_key="consumer.pub.key", oauth_nonce="32acf939-7139-4bd1-bbbb-2209349b867e", oauth_signature="bczL64hL%2FSKIL3N0TXAHtC1sVel6egFm9lST2WN6iuY%3D", oauth_signature_method="hmac-sha256", oauth_timestamp="1434705047", oauth_version="1.0"');			
 		});
 		
 		it("should generate valid oauth header when given: valid credential, with content body as form-urlencoded, NO query string, oauth_token & oauth_token_secret", function() {
@@ -237,6 +240,9 @@ describe("Serve oauth1.0a authorization header builder", function() {
 				oauth_nonce:'32acf939-7139-4bd1-bbbb-2209349b867e', 
 				oauth_version:'1.0'
 			});
+
+			var authorization_http_header = oauth.generateAuthorizationHeader(oauth_opts, request_data_with_contentBody_form_urlencoded_with_oauthToken_and_oauthTokenSecret, true);
+			expect(authorization_http_header).to.equal('oauth oauth_consumer_key="consumer.pub.key", oauth_nonce="32acf939-7139-4bd1-bbbb-2209349b867e", oauth_signature="AAC11xp0o49UAyLgR12xkYp2xgWbNy5jvTKUXoJcKRg%3D", oauth_signature_method="hmac-sha256", oauth_timestamp="1434705047", oauth_token="RJH%2BzWzZ4ZHlk89iQmy1FKhtegu%2Fk2opgB%2Bk9gcMgp4%3D", oauth_version="1.0"');			
 		});		
 
 		it("should generate valid oauth header when given: valid credential, with content body as form-urlencoded, with query string", function() {
@@ -250,6 +256,9 @@ describe("Serve oauth1.0a authorization header builder", function() {
 			   oauth_nonce:'32acf939-7139-4bd1-bbbb-2209349b867e',
 			   oauth_version:'1.0'
 			});
+
+			var authorization_http_header = oauth.generateAuthorizationHeader(oauth_opts, request_data_with_contentBody_form_urlencoded_with_queryString, true);
+			expect(authorization_http_header).to.equal('oauth oauth_consumer_key="consumer.pub.key", oauth_nonce="32acf939-7139-4bd1-bbbb-2209349b867e", oauth_signature="aMKUiguvf8X0%2FKYyJnxrgk7aqJNc1m9qAjiWqVx4Wvs%3D", oauth_signature_method="hmac-sha256", oauth_timestamp="1434705047", oauth_version="1.0"');
 		});
 		
 		it("should generate valid oauth header when given: valid credential, with content body as form-urlencoded, with query string, oauth_token & oauth_token_secret", function() {
@@ -264,6 +273,9 @@ describe("Serve oauth1.0a authorization header builder", function() {
 				oauth_nonce:'32acf939-7139-4bd1-bbbb-2209349b867e', 
 				oauth_version:'1.0'
 			});
+			
+			var authorization_http_header = oauth.generateAuthorizationHeader(oauth_opts, request_data_with_contentBody_form_urlencoded_with_queryString_with_oauthToken_and_oauthTokenSecret, true);
+			expect(authorization_http_header).to.equal('oauth oauth_consumer_key="consumer.pub.key", oauth_nonce="32acf939-7139-4bd1-bbbb-2209349b867e", oauth_signature="kwgKuXVNG9vY9rTYPcYL9z20tc%2F%2FGTqS35bRYkmWpiM%3D", oauth_signature_method="hmac-sha256", oauth_timestamp="1434705047", oauth_token="RJH%2BzWzZ4ZHlk89iQmy1FKhtegu%2Fk2opgB%2Bk9gcMgp4%3D", oauth_version="1.0"');
 		});				
 	});
 });

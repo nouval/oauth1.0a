@@ -78,4 +78,4 @@ httpReq.end();
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality. Lint and test your code.
 
-##[Changelog](https://github.com/ddo/oauth-1.0a/releases)
+##[Changelog](https://github.com/nouval/oauth1.0a/releases)

@@ -29,7 +29,8 @@ var oauth_opts = {
 		},
 		signature_method: 'hmac-sha256',
 	};
-	var request_data = {
+	
+var request_data = {
 		url: 'https://apiu3.servevirtual.net/v1/utilities/authtest',
 		method: 'GET'
 	};
@@ -37,13 +38,7 @@ var oauth_opts = {
 
 Setup your request
 ```js
-var request_data = {
-	url: 'https://api.twitter.com/1/statuses/update.json?include_entities=true',
-    method: 'POST',
-    data: {
-        status: 'Hello Ladies + Gentlemen, a signed OAuth request!'
-    }
-};
+var oauthHeader = oauth.generateAuthorizationHeader(oauth_opts, request_data, true);
 
 var options = {
 	hostname: 'apiu3.servevirtual.net',

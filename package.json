@@ -21,6 +21,7 @@
     "chai": "^3.0.0",
     "coveralls": "^2.11.2",
     "crypto-js": "^3.1.5",
+    "jscoverage": "^0.5.9",
     "mocha": "^2.2.5",
     "mocha-lcov-reporter": "0.0.2",
     "uuid": "^2.0.1"

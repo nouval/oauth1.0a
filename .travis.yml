@@ -8,4 +8,4 @@ node_js:
   - "iojs"
   - "iojs-v1.0.4" 
   before_script:
-  - npm update -g npm
+  - "npm update -g npm"

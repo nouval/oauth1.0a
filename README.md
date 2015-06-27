@@ -1,5 +1,6 @@
 #serve-oauth
 [![Build Status](https://travis-ci.org/nouval/oauth1.0a.svg?branch=master)](https://travis-ci.org/nouval/oauth1.0a)
+[![Coverage Status](https://coveralls.io/repos/nouval/oauth1.0a/badge.svg)](https://coveralls.io/r/nouval/oauth1.0a)
 
 OAuth-1.0a implementation for Serve Open API
 
